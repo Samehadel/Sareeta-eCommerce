@@ -1,0 +1,18 @@
+2021-05-30 14:59:45 [main] INFO  com.example.demo.SareetaApplication -
+                Starting SareetaApplication on Sameh-Adel-PC with PID 6604 (started by ALKODS in E:\SaMeH\Career\Programming\Courses\For Java\Java Web Developer Nanodegree\Part 4\P04-eCommerce Application)
+2021-05-30 14:59:45 [main] DEBUG com.example.demo.SareetaApplication -
+                Running with Spring Boot v2.1.5.RELEASE, Spring v5.1.7.RELEASE
+2021-05-30 14:59:45 [main] INFO  com.example.demo.SareetaApplication -
+                No active profile set, falling back to default profiles: default
+2021-05-30 14:59:53 [main] DEBUG c.e.d.s.JWTAuthenticationVerficationFilter -
+                Filter 'JWTAuthenticationVerficationFilter' configured for use
+2021-05-30 14:59:55 [main] INFO  com.example.demo.SareetaApplication -
+                Started SareetaApplication in 10.889 seconds (JVM running for 12.612)
+2021-05-30 15:00:11 [http-nio-8082-exec-2] INFO  c.e.demo.controllers.UserController -
+                Create User Request
+2021-05-30 15:02:52 [http-nio-8082-exec-7] DEBUG c.e.d.s.JWTAuthenticationFilter -
+                Request is to process authentication
+2021-05-30 15:03:27 [http-nio-8082-exec-10] INFO  c.e.demo.controllers.UserController -
+                Find User By Username Request
+2021-05-30 15:03:36 [http-nio-8082-exec-1] INFO  c.e.demo.controllers.UserController -
+                Find User By Username Request
