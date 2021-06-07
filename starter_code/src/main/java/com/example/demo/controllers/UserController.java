@@ -18,7 +18,7 @@ import java.util.Optional;
 @RequestMapping("/api/user")
 public class UserController {
 
-	private static final Logger logger = LoggerFactory.getLogger("splunkLogger");
+	private final static Logger logger = LoggerFactory.getLogger(UserController.class);
 
 	@Autowired
 	private UserRepository userRepository;
@@ -51,29 +51,31 @@ public class UserController {
 	
 	@PostMapping("/create")
 	public ResponseEntity<User> createUser(@RequestBody CreateUserRequest createUserRequest) {
-		logger.info("Request: Create User");
-
 		User user = new User();
 		Cart cart = new Cart();
 
 		cartRepository.save(cart);
 
 		// Check if username already exists
-		if(userRepository.findByUsername(createUserRequest.getUsername()) != null)
+		if(userRepository.findByUsername(createUserRequest.getUsername()) != null) {
+			logger.info("Request: Create User Failed, Username Already Exist");
 			return ResponseEntity.badRequest().header("Error", "Username Already Exist").build();
-
+		}
 
 		// Checks the password length and matches with confirmed password
 		if( createUserRequest.getPassword().length() < 8 ||
 		    !createUserRequest.getPassword().equals(createUserRequest.getConfirmPassword()) ){
+
+			logger.info("Request: Create User Failed, Password Mismatch");
 			return ResponseEntity.badRequest().build();
 		}
 
 		user.setUsername(createUserRequest.getUsername());
 		user.setPassword(encoder.encode(createUserRequest.getPassword()));
 		user.setCart(cart);
-
 		userRepository.save(user);
+
+		logger.info("Request: Create User Succeed");
 
 		return ResponseEntity.ok(user);
 	}

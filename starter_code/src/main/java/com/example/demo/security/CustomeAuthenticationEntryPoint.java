@@ -13,7 +13,7 @@ import java.io.IOException;
 public class CustomeAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
     private final String headerValue;
-    private static final Logger logger = LoggerFactory.getLogger("splunkLogger");
+    private static final Logger logger = LoggerFactory.getLogger(CustomeAuthenticationEntryPoint.class);
 
     public CustomeAuthenticationEntryPoint(String headerValue) {
         this.headerValue = headerValue;
@@ -28,6 +28,6 @@ public class CustomeAuthenticationEntryPoint implements AuthenticationEntryPoint
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED,
                 authException.getMessage());
 
-        logger.info("Failure: Sign In Bad Credentials");
+        logger.info("Failure: Sign-In Bad Credentials");
     }
 }
