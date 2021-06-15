@@ -14,6 +14,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.util.Optional;
+
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
@@ -68,7 +71,7 @@ public class UserControllerTests {
      */
     @Test
     public void create_user_unhappy_path(){
-        // Mimic existing username
+        // Mimic an existing username
         when(userRepo.findByUsername(anyString())).thenReturn(new User());
         when(encoder.encode(anyString())).thenReturn("Test HashedPassword");
 
@@ -80,5 +83,41 @@ public class UserControllerTests {
         Assert.assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         Assert.assertNull(responseUser);
         Assert.assertEquals("Username Already Exist", response.getHeaders().get("Error").get(0));
+    }
+
+    @Test
+    public void find_by_username_happy_path(){
+        // Mimic an existing user
+        when(userRepo.findByUsername(anyString())).thenReturn(new User());
+
+        ResponseEntity response = userController.findByUserName("Username");
+        Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+
+    @Test
+    public void find_by_username_unhappy_path(){
+        // Mimic an existing user
+        when(userRepo.findByUsername(anyString())).thenReturn(null);
+
+        ResponseEntity response = userController.findByUserName("Username");
+        Assert.assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+    }
+
+    @Test
+    public void find_by_id_happy_path(){
+        // Mimic an existing user
+        when(userRepo.findById(anyLong())).thenReturn(Optional.of(new User()));
+
+        ResponseEntity response = userController.findById(1l);
+        Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+
+    @Test
+    public void find_by_id_unhappy_path(){
+        // Mimic an existing user
+        when(userRepo.findById(anyLong())).thenReturn(Optional.empty());
+
+        ResponseEntity response = userController.findById(1l);
+        Assert.assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
     }
 }
