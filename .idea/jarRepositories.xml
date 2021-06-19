@@ -26,5 +26,10 @@
       <option name="name" value="Splunk Releases" />
       <option name="url" value="https://splunk.jfrog.io/splunk/ext-releases-local" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="java.net" />
+      <option name="name" value="java.net" />
+      <option name="url" value="https://maven.java.net/content/repositories/releases" />
+    </remote-repository>
   </component>
 </project>

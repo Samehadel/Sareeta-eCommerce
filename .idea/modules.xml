@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/starter_code/Sareeta-eCommerce.iml" filepath="$PROJECT_DIR$/starter_code/Sareeta-eCommerce.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/eCommerce Application.iml" filepath="$PROJECT_DIR$/.idea/eCommerce Application.iml" />
-      <module fileurl="file://$PROJECT_DIR$/starter_code/starter.iml" filepath="$PROJECT_DIR$/starter_code/starter.iml" />
     </modules>
   </component>
 </project>

@@ -56,7 +56,7 @@ public class ItemControllerTest {
     }
 
     @Test
-    public void  get_item_by_name_happy_path(){
+    public void  get_items_by_name_happy_path(){
         when(itemRepo.findByName(anyString())).thenReturn(Arrays.asList(new Item()));
 
         ResponseEntity response = itemController.getItemsByName("Item Name");
@@ -64,7 +64,7 @@ public class ItemControllerTest {
     }
 
     @Test
-    public void  get_item_by_name_unhappy_path(){
+    public void  get_items_by_name_unhappy_path(){
         when(itemRepo.findByName(anyString())).thenReturn(null);
 
         ResponseEntity response = itemController.getItemsByName("Item Name");

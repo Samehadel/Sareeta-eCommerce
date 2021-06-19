@@ -85,6 +85,33 @@ public class UserControllerTests {
         Assert.assertEquals("Username Already Exist", response.getHeaders().get("Error").get(0));
     }
 
+    /**
+        Negative Test: tests how UserController response provided Password != confirmPassword
+        and Password shorter than 8 characters
+     */
+    @Test
+    public void create_user_unhappy_path2(){
+        // Mimic an existing username
+        when(userRepo.findByUsername(anyString())).thenReturn(null);
+        when(encoder.encode(anyString())).thenReturn("Test HashedPassword");
+
+        CreateUserRequest requestBody = new CreateUserRequest("Test Username", "Test Password", "Test Password 2");
+        ResponseEntity<User> response = userController.createUser(requestBody);
+        User responseUser = response.getBody();
+
+        // Assertions
+        Assert.assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        Assert.assertNull(responseUser);
+
+        requestBody = new CreateUserRequest("Test Username", "Short", "Short");
+        response = userController.createUser(requestBody);
+        responseUser = response.getBody();
+
+        // Assertions
+        Assert.assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        Assert.assertNull(responseUser);
+    }
+
     @Test
     public void find_by_username_happy_path(){
         // Mimic an existing user

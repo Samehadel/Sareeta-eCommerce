@@ -6,15 +6,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="starter" />
+        <module name="Sareeta-eCommerce" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Sareeta-eCommerce" target="1.8" />
       <module name="starter" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Sareeta-eCommerce" options="-parameters" />
       <module name="starter" options="-parameters" />
     </option>
   </component>
